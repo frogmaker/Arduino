@@ -1,6 +1,4 @@
-# Arduino — sześć projektów dla uczniów
-
-Od pierwszego zapalenia LED do pomiaru odległości i nadawania Morse’em. Każdy projekt zawiera **opis działania, listę części, schemat montażowy PNG oraz gotowy kod Arduino**.
+# Arduino — projekty
 
 **Platforma:** klasyczne Nano / zgodny klon z logiką 5 V. Projekty wykonuje się kolejno, wykorzystując ponownie te same części.
 
