@@ -13,6 +13,11 @@
 | **Nadajnik Morse’a** | Jeden przycisk uruchamia SOS, drugi służy jako ręczny klucz. LED i brzęczyk nadają ten sam rytm. Kodowanie informacji i automat stanów. | [Opis i schematy](projekty/nadajnik_morsea/README.md) · [Kod](projekty/nadajnik_morsea/nadajnik_morsea.ino) |
 | **Sygnalizacja świetlna** | Trzy LED przechodzą przez cztery fazy w pętli. Wyjścia cyfrowe, rezystory i odmierzanie czasu bez `delay()`. | [Opis i schemat](projekty/sygnalizacja_swietlna/README.md) · [Kod](projekty/sygnalizacja_swietlna/sygnalizacja_swietlna.ino) |
 
+
+//////////////////////////////////
+Przykład
+//////////////////////////////////
+
 ### Cykl sygnalizacji świetlnej
 
 🟢 **5 s** → 🟡 **1 s** → 🔴 **5 s** → 🔴🟡 **1 s** → ponownie 🟢
