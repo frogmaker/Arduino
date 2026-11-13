@@ -1,8 +1,6 @@
-# Lampka nocna z regulowanym progiem
+# Czujnik oświetlenia do hodowli roślin z regulowanym progiem
 
-**Poziom:** podstawowy · **Czas orientacyjny:** 45–60 min · **Płytka:** klasyczne Nano / zgodny klon z logiką 5 V.
-
-Po zasłonięciu fotorezystora LED płynnie się rozjaśnia. Potencjometr reguluje próg wykrywania ciemności. Histereza ogranicza przełączanie na granicy.
+Po zapadnięciu zmroku i zmniejszeniu padania światła na fotorezystor, dodatkowe źródło światła do wsparcia hodowli płynnie się rozjaśnia. Potencjometr reguluje próg wykrywania ciemności. Histereza ogranicza przełączanie na granicy.
 
 ## Elementy z zestawu
 
@@ -43,7 +41,7 @@ Przepinaj elementy przy odłączonym USB. Obie nóżki LED muszą należeć do r
 3. Wgraj kod, otwórz Serial 9600 i obserwuj wartości Swiatlo ADC, prog i PWM.
 4. Pokrętłem dobierz próg do sali. Zasłoń LDR dłonią, a potem go odsłoń.
 
-Otwórz **lampka_nocna.ino** w Arduino IDE. Nie instalujesz dodatkowych bibliotek. Wybór płytki i portu opisano w [instrukcji uruchomienia](../../README.md#uruchomienie).
+Otwórz **czujnik_swiatla.ino** w Arduino IDE. Nie instalujesz dodatkowych bibliotek. Wybór płytki i portu opisano w [instrukcji uruchomienia](../../README.md#uruchomienie).
 
 ## Sprawdzenie na stanowisku
 
