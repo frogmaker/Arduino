@@ -2,7 +2,7 @@
 
 **Poziom:** podstawowy · **Czas orientacyjny:** 30–45 min · **Płytka:** klasyczne Nano / zgodny klon z logiką 5 V.
 
-Zbuduj sygnalizator z trzech LED. Powtarzana kolejność: zielone 5 s → żółte 1 s → czerwone 5 s → czerwone razem z żółtym 1 s → ponownie zielone. Cały cykl trwa nominalnie 12 sekund.
+Zbuduj sygnalizator z trzech LED. Powtarzana kolejność: zielone 5 s → żółte 2 s → czerwone 5 s → czerwone razem z żółtym 2 s → ponownie zielone. Cały cykl trwa nominalnie 14 sekund.
 
 ## Elementy z zestawu
 
@@ -37,10 +37,10 @@ Przepinaj elementy przy odłączonym USB. Obie nóżki LED muszą należeć do r
 
 1. Ustaw trzy LED w kolejności fizycznej: u góry czerwona, pośrodku żółta, na dole zielona. Każda nóżka musi należeć do właściwego, oddzielnego węzła płytki stykowej.
 2. Połącz każdą anodę z jej pinem Nano przez osobny rezystor 1 kΩ. Połącz wszystkie katody z GND.
-3. Wgraj sygnalizacja_swietlna.ino. Dodatkowe biblioteki nie są potrzebne. Po uruchomieniu jako pierwsza świeci zielona LED.
-4. Obserwuj kilka pełnych cykli. Opcjonalnie otwórz Monitor portu szeregowego 9600 baud — przy każdej zmianie program podaje nową fazę.
+3. Wgraj [sygnalizacja.ino](sygnalizacja/sygnalizacja.ino). Dodatkowe biblioteki nie są potrzebne. Po uruchomieniu jako pierwsza świeci zielona LED.
+4. Obserwuj kilka pełnych cykli i porównaj czasy świecenia z tabelą poniżej.
 
-Otwórz **sygnalizacja_swietlna.ino** w Arduino IDE. Nie instalujesz dodatkowych bibliotek. Wybór płytki i portu opisano w [instrukcji uruchomienia](../../README.md#uruchomienie).
+Otwórz [sygnalizacja.ino](sygnalizacja/sygnalizacja.ino) z podfolderu `sygnalizacja` w Arduino IDE. Pozostaw szkic w tym folderze, zgodnie z nazwą pliku. Wybór płytki i portu opisano w [instrukcji uruchomienia](../../README.md#uruchomienie).
 
 ## Sprawdzenie na stanowisku
 
@@ -49,20 +49,22 @@ Poniższe testy należy wykonać na złożonym układzie. Oczekiwane wyniki nie 
 | Próba | Oczekiwany wynik |
 |---|---|
 | Od startu do 5 s | Świeci tylko zielona LED. |
-| Od 5 s do 6 s | Świeci tylko żółta LED. |
-| Od 6 s do 11 s | Świeci tylko czerwona LED. |
-| Od 11 s do 12 s | Świecą równocześnie czerwona i żółta LED, a zielona jest wyłączona. |
-| Po 12 s i w kolejnych cyklach | Wraca zielona LED na 5 s; sekwencja powtarza się bez naciskania przycisku. |
+| Od 5 s do 7 s | Świeci tylko żółta LED. |
+| Od 7 s do 12 s | Świeci tylko czerwona LED. |
+| Od 12 s do 14 s | Świecą równocześnie czerwona i żółta LED, a zielona jest wyłączona. |
+| Po 14 s i w kolejnych cyklach | Wraca zielona LED na 5 s; sekwencja powtarza się bez naciskania przycisku. |
 
 ## Co wyjaśnić uczniom
 
-wyjścia cyfrowe, rezystor szeregowy, cztery fazy automatu i odmierzanie czasu funkcją millis().
+Wyjścia cyfrowe, rezystor szeregowy i cztery fazy sygnalizacji zapisane kolejno w programie.
 
-Kod wykorzystuje tablicę PHASE_MS = {5000, 1000, 5000, 1000} w milisekundach. Po resecie zaczyna od zielonego. Zielona nigdy nie jest celowo włączana razem z czerwoną; przed zmianą fazy program wygasza poprzednie światła. Czas liczony jest bez delay(), z uwzględnieniem zawinięcia licznika millis(). Jest to szkolny model o czasach podanych w zadaniu; rzeczywiste czasy zależą także od zegara płytki i czasu wykonania pętli.
+`setup()` wykonuje się raz i ustawia piny D7, D8 oraz D9 jako wyjścia przez `pinMode()`. Następnie `loop()` powtarza sekwencję. `digitalWrite(pin, HIGH)` zapala LED, a `digitalWrite(pin, LOW)` ją gasi. Funkcja `delay()` czeka przez podaną liczbę milisekund: `delay(5000)` to 5 sekund, a `delay(2000)` to 2 sekundy.
+
+Po resecie świeci zielona. Następnie program przechodzi przez żółtą, czerwoną i czerwoną z żółtą. Na końcu gasi żółtą i czerwoną, po czym zaczyna kolejny cykl od zielonej. Podczas `delay()` program czeka, więc ten prosty szkic zajmuje się wyłącznie sekwencją świateł. Jest to szkolny model; rzeczywiste czasy zależą także od zegara płytki i czasu wykonania poleceń.
 
 ## Zadania dodatkowe
 
-- Zmień czasy w tablicy PHASE_MS i oblicz nową długość pełnego cyklu.
+- Zmień wartości w `delay(5000)` i `delay(2000)` i oblicz nową długość pełnego cyklu.
 - Wyjaśnij, dlaczego faza czerwona+żółta ma dwie zapalone LED, a nie dwa kolejne pojedyncze światła.
 
 ## Gdy coś nie działa
@@ -73,8 +75,8 @@ Kod wykorzystuje tablicę PHASE_MS = {5000, 1000, 5000, 1000} w milisekundach. P
 
 ## Weryfikacja i źródła
 
-Kod sprawdzono przez kompilację dla ATmega328P 16 MHz z Arduino AVR Boards 1.8.8 oraz testy logiki z symulowanymi wejściami. Nie wykonano prób na fizycznym zestawie. Testy stanowiskowe powyżej wykonaj po złożeniu układu.
+Uproszczony kod przeszedł kompilację i linkowanie dla Nano / ATmega328P 16 MHz z Arduino AVR Boards 1.8.8, bez ostrzeżeń szkicu. Sprawdzono kolejność poleceń i czasy czterech faz. Nie wykonano prób na fizycznym zestawie. Próby stanowiskowe powyżej wykonaj po złożeniu układu.
 
-[Arduino millis()](https://docs.arduino.cc/language-reference/en/functions/time/millis/) · [Arduino Blink Without Delay](https://docs.arduino.cc/built-in-examples/digital/BlinkWithoutDelay/)
+[Arduino delay()](https://docs.arduino.cc/language-reference/en/functions/time/delay/) · [Arduino Blink](https://docs.arduino.cc/built-in-examples/basics/Blink/)
 
 [← Wszystkie projekty](../../README.md)

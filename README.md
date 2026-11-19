@@ -11,7 +11,7 @@
 | **Refleksomierz** | Poczekaj na zielone światło i naciśnij przycisk. Program mierzy czas reakcji w milisekundach oraz wykrywa falstart. Przyciski, losowe oczekiwanie i odmierzanie czasu. | [Opis i schemat](projekty/refleksomierz/README.md) · [Kod](projekty/refleksomierz/refleksomierz.ino) |
 | **Zamek szyfrowy** | Cztery przyciski i kod **1 → 3 → 2 → 4**. Zielona LED sygnalizuje otwarcie, czerwona zamknięcie. Tablice, sekwencje i obsługa błędów. | [Opis i schemat](projekty/zamek_szyfrowy/README.md) · [Kod](projekty/zamek_szyfrowy/zamek_szyfrowy.ino) |
 | **Nadajnik Morse’a** | Jeden przycisk uruchamia SOS, drugi służy jako ręczny klucz. LED i brzęczyk nadają ten sam rytm. Kodowanie informacji i automat stanów. | [Opis i schematy](projekty/nadajnik_morsea/README.md) · [Kod](projekty/nadajnik_morsea/nadajnik_morsea.ino) |
-| **Sygnalizacja świetlna** | Trzy LED przechodzą przez cztery fazy w pętli. Wyjścia cyfrowe, rezystory i odmierzanie czasu bez `delay()`. | [Opis i schemat](projekty/sygnalizacja_swietlna/README.md) · [Kod](projekty/sygnalizacja_swietlna/sygnalizacja_swietlna.ino) |
+| **Sygnalizacja świetlna** | Trzy LED przechodzą przez cztery fazy w pętli. Prosty kod: wyjścia cyfrowe, rezystory i opóźnienia `delay()`. | [Opis i schemat](projekty/sygnalizacja_swietlna/README.md) · [Kod](projekty/sygnalizacja_swietlna/sygnalizacja/sygnalizacja.ino) |
 
 
 //////////////////////////////////
@@ -20,9 +20,9 @@ Przykład
 
 ### Cykl sygnalizacji świetlnej
 
-🟢 **5 s** → 🟡 **1 s** → 🔴 **5 s** → 🔴🟡 **1 s** → ponownie 🟢
+🟢 **5 s** → 🟡 **2 s** → 🔴 **5 s** → 🔴🟡 **2 s** → ponownie 🟢
 
-Pełny cykl trwa nominalnie **12 sekund**.
+Pełny cykl trwa nominalnie **14 sekund**.
 
 ![Przykład schematu montażowego — sygnalizacja świetlna](projekty/sygnalizacja_swietlna/schemat_montazowy.png)
 
@@ -33,7 +33,7 @@ Pełny cykl trwa nominalnie **12 sekund**.
 3. Przy odłączonym USB zmontuj układ według schematu. W alarmie i nadajniku Morse’a wykonaj też osobny tor L293D i brzęczyka.
 4. Otwórz plik `.ino` w Arduino IDE. W projektach z plikiem `Przycisk.h` pozostaw go obok szkicu, w tym samym folderze.
 5. Wybierz **Arduino Nano**, właściwy port i procesor zgodny z oznaczeniem na swojej płytce. W starszych klonach może być potrzebna opcja **ATmega328P (Old Bootloader)**. Dodatkowe biblioteki nie są potrzebne.
-6. Podłącz USB, wgraj kod i wykonaj próby z instrukcji projektu. Monitor portu szeregowego ustaw na **9600 baud**.
+6. Podłącz USB, wgraj kod i wykonaj próby z instrukcji projektu. W projektach korzystających z Monitora portu szeregowego ustaw **9600 baud**.
 
 ## Płytka, zasilanie i schematy
 
@@ -45,6 +45,6 @@ Pełny cykl trwa nominalnie **12 sekund**.
 
 ## Sprawdzenie kodu
 
-Wszystkie sześć szkiców przeszło kompilację dla **ATmega328P 16 MHz** i testy logiki z symulowanymi wejściami. Nie wykonano prób na fizycznym zestawie. Instrukcje projektów podają oczekiwane zachowanie i próby do wykonania po montażu.
+Wszystkie sześć szkiców przeszło kompilację dla **ATmega328P 16 MHz**. W uproszczonej sygnalizacji sprawdzono kompilację i kolejność czterech faz; pozostałe pięć projektów przeszło również testy logiki z symulowanymi wejściami. Nie wykonano prób na fizycznym zestawie. Instrukcje projektów podają oczekiwane zachowanie i próby do wykonania po montażu.
 
 Podstawą parametrów są [dokumentacja klasycznego Nano](https://docs.arduino.cc/hardware/nano/) i [oficjalny pinout](https://docs.arduino.cc/resources/pinouts/A000005-full-pinout.pdf). Źródła dotyczące czujnika, sterownika i pozostałych funkcji podano przy poszczególnych projektach.
