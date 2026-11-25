@@ -134,9 +134,9 @@ void loop() {
     if (uint32_t(now - stateAt) >= 1000UL && downCount == 0) setState(LOCKED, now);
     return;
   }
-  if (progress > 0 && uint32_t(now - lastKeyAt) >= 3000UL) {
+  if (progress > 0 && uint32_t(now - lastKeyAt) >= 10000UL) {
     resetCode();
-    Serial.println(F("Minely 3 s bez kolejnego klawisza. Proba skasowana."));
+    Serial.println(F("Minelo 10 s bez kolejnego klawisza. Proba skasowana."));
     printStatus();
   }
   if (eventCount == 0) return;

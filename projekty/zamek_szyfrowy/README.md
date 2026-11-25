@@ -69,7 +69,7 @@ Stan: ZAMKNIETY | Wpisano: [1 3 _ _]
 
 Po pełnym poprawnym kodzie pojawia się `Stan: OTWARTY | Wpisano: [1 3 2 4]`. Sekwencja pozostaje widoczna do ponownego zamknięcia.
 
-Przy błędnym klawiszu program pokazuje rzeczywiście wpisaną, nieudaną próbę, po czym ją kasuje i wypisuje `Stan: BLAD | Wpisano: [_ _ _ _]`. Jednoczesne przyciski także odrzucają próbę. Przerwa co najmniej 3 sekund zeruje częściowy kod; komunikat informuje o rozpoczęciu od początku.
+Przy błędnym klawiszu program pokazuje rzeczywiście wpisaną, nieudaną próbę, po czym ją kasuje i wypisuje `Stan: BLAD | Wpisano: [_ _ _ _]`. Jednoczesne przyciski także odrzucają próbę. Przerwa co najmniej 10 sekund zeruje częściowy kod; komunikat informuje o rozpoczęciu od początku. Limit dotyczy odstępu między kolejnymi naciśnięciami podczas wpisywania kodu.
 
 Naciśnięcia podczas otwarcia lub sygnalizowania błędu nadal są pokazywane, z informacją, że pominięto je przy wpisywaniu kodu. Raporty pojawiają się przy zdarzeniach i zmianach stanu; samo przytrzymanie przycisku nie powoduje ciągłego wypisywania.
 
@@ -79,9 +79,9 @@ Poniższe testy należy wykonać na złożonym układzie. Oczekiwane wyniki nie 
 
 | Próba | Oczekiwany wynik |
 |---|---|
-| Kod 1–3–2–4, przerwy poniżej 3 s | Zielona LED włącza się, czerwona gaśnie. |
+| Kod 1–3–2–4, przerwy poniżej 10 s | Zielona LED włącza się, czerwona gaśnie. |
 | Błędny klawisz | Czerwona LED miga przez około 1 s; próbę zaczynasz od początku. |
-| Przerwa co najmniej 3 s w połowie kodu | Postęp zostaje wyzerowany. |
+| Przerwa co najmniej 10 s w połowie kodu | Postęp zostaje wyzerowany. |
 | Dwa klawisze przytrzymane jednocześnie | Próba jest odrzucana. |
 | Po poprawnym kodzie | Po co najmniej 5 s i puszczeniu wszystkich klawiszy wraca stan zamknięty. |
 | Naciśnij K1, puść go, następnie naciśnij K3 | Monitor pokazuje kolejno `[1 _ _ _]` i `[1 3 _ _]`; puszczenie K1 nie kasuje sekwencji. |
