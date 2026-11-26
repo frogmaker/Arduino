@@ -12,6 +12,7 @@
 | **Zamek szyfrowy** | Cztery przyciski i kod **1 → 3 → 2 → 4**. Zielona LED sygnalizuje otwarcie, czerwona zamknięcie. Tablice, sekwencje i obsługa błędów. | [Opis i schemat](projekty/zamek_szyfrowy/README.md) · [Kod](projekty/zamek_szyfrowy/zamek_szyfrowy.ino) |
 | **Nadajnik Morse’a** | Jeden przycisk uruchamia SOS, drugi służy jako ręczny klucz. LED i brzęczyk nadają ten sam rytm. Kodowanie informacji i automat stanów. | [Opis i schematy](projekty/nadajnik_morsea/README.md) · [Kod](projekty/nadajnik_morsea/nadajnik_morsea.ino) |
 | **Sygnalizacja świetlna** | Trzy LED przechodzą przez cztery fazy w pętli. Prosty kod: wyjścia cyfrowe, rezystory i opóźnienia `delay()`. | [Opis i schemat](projekty/sygnalizacja_swietlna/README.md) · [Kod](projekty/sygnalizacja_swietlna/sygnalizacja/sygnalizacja.ino) |
+| **Wyświetlacz z ruchomym tekstem** | Dwa napisy przewijane w lewo na LCD 1602. Biblioteka LiquidCrystal, interfejs równoległy 4-bitowy, regulacja kontrastu i odmierzanie czasu przez `millis()`. | [Opis i schematy](projekty/baner_reklamowy_ruchomy/README.md) · [Kod](projekty/baner_reklamowy_ruchomy/baner_reklamowy_ruchomy.ino) |
 
 
 //////////////////////////////////
@@ -32,19 +33,19 @@ Pełny cykl trwa nominalnie **14 sekund**.
 2. Wybierz projekt, przeczytaj jego README i przygotuj wymienione części.
 3. Przy odłączonym USB zmontuj układ według schematu. W alarmie i nadajniku Morse’a wykonaj też osobny tor L293D i brzęczyka.
 4. Otwórz plik `.ino` w Arduino IDE. W projektach z plikiem `Przycisk.h` pozostaw go obok szkicu, w tym samym folderze.
-5. Wybierz **Arduino Nano**, właściwy port i procesor zgodny z oznaczeniem na swojej płytce. W starszych klonach może być potrzebna opcja **ATmega328P (Old Bootloader)**. Dodatkowe biblioteki nie są potrzebne.
+5. Wybierz **Arduino Nano**, właściwy port i procesor zgodny z oznaczeniem na swojej płytce. W starszych klonach może być potrzebna opcja **ATmega328P (Old Bootloader)**. Projekt wyświetlacza wymaga biblioteki **LiquidCrystal** — instalację opisano w jego instrukcji. Pozostałe projekty nie wymagają dodatkowych bibliotek.
 6. Podłącz USB, wgraj kod i wykonaj próby z instrukcji projektu. W projektach korzystających z Monitora portu szeregowego ustaw **9600 baud**.
 
 ## Płytka, zasilanie i schematy
 
 - Zasilanie projektów: **USB Nano, 5 V**. Wszystkie elementy mają wspólną masę GND. Bateria 9 V nie jest potrzebna do tych ćwiczeń.
 - Zestaw rozpoznano jako format klasycznego Nano. Przed wyborem procesora odczytaj oznaczenie mikrokontrolera na swoim klonie; sprawdzone kody przygotowano dla **ATmega328P 16 MHz**.
-- Każda LED ma osobny rezystor **1 kΩ**. Przyciski łączą wejścia z GND; podciąganie `INPUT_PULLUP` włącza program.
+- Każda osobna LED sygnalizacyjna ma rezystor **1 kΩ**. Podświetlenie LCD wykorzystuje **330 Ω**, zgodnie z instrukcją wyświetlacza. Przyciski łączą wejścia z GND; podciąganie `INPUT_PULLUP` włącza program.
 - Rysunki pokazują elementy i kolorowe przewody. Nano jest widoczne z góry, USB u dołu. Dobierz otwory breadboardu według jego rzeczywistych grup styków.
 - Alarm i nadajnik Morse’a używają aktywnego brzęczyka oraz L293D. Wymagane napięcie konkretnego brzęczyka trzeba potwierdzić; sterownik powoduje spadek napięcia. Pełny opis i oba schematy są w instrukcjach tych projektów.
 
 ## Sprawdzenie kodu
 
-Wszystkie sześć szkiców przeszło kompilację dla **ATmega328P 16 MHz**. W uproszczonej sygnalizacji sprawdzono kompilację i kolejność czterech faz; pozostałe pięć projektów przeszło również testy logiki z symulowanymi wejściami. Nie wykonano prób na fizycznym zestawie. Instrukcje projektów podają oczekiwane zachowanie i próby do wykonania po montażu.
+Wszystkie siedem szkiców przeszło kompilację dla **ATmega328P 16 MHz**. W uproszczonej sygnalizacji sprawdzono kompilację i kolejność czterech faz; pozostałe sześć projektów przeszło również testy logiki z atrapami sprzętu. Wyświetlacz sprawdzono z biblioteką **LiquidCrystal 1.0.7**. Nie wykonano prób na fizycznym zestawie. Instrukcje projektów podają oczekiwane zachowanie i próby do wykonania po montażu.
 
 Podstawą parametrów są [dokumentacja klasycznego Nano](https://docs.arduino.cc/hardware/nano/) i [oficjalny pinout](https://docs.arduino.cc/resources/pinouts/A000005-full-pinout.pdf). Źródła dotyczące czujnika, sterownika i pozostałych funkcji podano przy poszczególnych projektach.
