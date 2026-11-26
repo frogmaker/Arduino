@@ -1,30 +1,3 @@
-/*#include <LiquidCrystal.h>
-
-// RS, E, D4, D5, D6, D7
-LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
-
-void setup()
-{
-  lcd.begin(16, 2);
-
-  lcd.setCursor(0, 0);
-  lcd.print("hupla.pl");
-}
-
-void loop()
-{
-}
-
-*/
-
-// ============================================================
-// TEKSTY
-// ============================================================
-/*
-const char napis1[] = "Bioinformatyka";
-const char napis2[] = "druk3D arduino";
-*/
-
 #include <LiquidCrystal.h>
 
 // ============================================================
@@ -37,8 +10,8 @@ LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 // TEKSTY
 // ============================================================
 
-const char napis1[] = "HUPLA.PL    hupla.pl";
-const char napis2[] = "serwis retro druk3D arduino";
+const char napis1[] = "BIOINFORMATYKA   bioinformatyka";
+const char napis2[] = "druk3D arduino";
 
 // ============================================================
 // USTAWIENIA
