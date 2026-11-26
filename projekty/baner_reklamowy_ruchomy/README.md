@@ -69,8 +69,8 @@ Dolny wiersz ma początkowe przesunięcie `pozycjaDolna = 8`. Ponieważ tekst je
 W aktywnej części szkicu edytuj:
 
 ```cpp
-const char napis1[] = "HUPLA.PL    hupla.pl";
-const char napis2[] = "serwis retro druk3D arduino";
+const char napis1[] = "BIOINFORMATYKA bioinformatyka";
+const char napis2[] = "druk3D arduino";
 const int ODSTEP = 3;
 const unsigned long SPEED = 500;
 ```
