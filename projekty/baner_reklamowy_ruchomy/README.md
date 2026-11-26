@@ -58,8 +58,8 @@ Rezystor 330 Ω ogranicza prąd podświetlenia. Niektóre moduły zawierają ju�
 Przykładowa zawartość obu wierszy zaraz po starcie:
 
 ```text
-HUPLA.PL    hupl
-duino   serwis r
+BIOINFORMATYKA
+aduino   druk3d
 ```
 
 Dolny wiersz ma początkowe przesunięcie `pozycjaDolna = 8`. Ponieważ tekst jest powtarzany, z lewej może być widoczna końcówka poprzedniej kopii — nie oznacza to błędu.
