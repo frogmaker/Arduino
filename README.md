@@ -1,6 +1,6 @@
 # Arduino — projekty
 
-**Platforma:** klasyczne Nano / zgodny klon z logiką 5 V. Projekty wykonuje się kolejno, wykorzystując ponownie te same części.
+**Platforma:** klasyczne Nano / zgodny klon z logiką 5 V oraz Arduino Uno R3 w projekcie stacji mikroklimatu. Projekty wykonuje się kolejno, wykorzystując ponownie te same części. Stacja wykorzystuje elementy zestawów FORBOT Arduino I i II; jej kod sprawdzono dla Uno i klasycznego Nano z ATmega328P.
 
 ## Wybierz projekt
 
@@ -13,6 +13,7 @@
 | **Nadajnik Morse’a** | Jeden przycisk uruchamia SOS, drugi służy jako ręczny klucz. LED i brzęczyk nadają ten sam rytm. Kodowanie informacji i automat stanów. | [Opis i schematy](projekty/nadajnik_morsea/README.md) · [Kod](projekty/nadajnik_morsea/nadajnik_morsea.ino) |
 | **Sygnalizacja świetlna** | Trzy LED przechodzą przez cztery fazy w pętli. Prosty kod: wyjścia cyfrowe, rezystory i opóźnienia `delay()`. | [Opis i schemat](projekty/sygnalizacja_swietlna/README.md) · [Kod](projekty/sygnalizacja_swietlna/sygnalizacja/sygnalizacja.ino) |
 | **Wyświetlacz z ruchomym tekstem** | Dwa napisy przewijane w lewo na LCD 1602. Biblioteka LiquidCrystal, interfejs równoległy 4-bitowy, regulacja kontrastu i odmierzanie czasu przez `millis()`. | [Opis i schematy](projekty/baner_reklamowy_ruchomy/README.md) · [Kod](projekty/baner_reklamowy_ruchomy/baner_reklamowy_ruchomy.ino) |
+| **Stacja mikroklimatu w klasie** | Temperatura i wilgotność z DHT11, drugi termometr DS18B20, LCD 16×2, przycisk MIN/MAX i alarm LED z histerezą. Porównanie czujników, dane CSV i odmierzanie czasu przez `millis()`. | [Opis i schematy](projekty/stacja_mikroklimatu/README.md) · [Kod](projekty/stacja_mikroklimatu/stacja_mikroklimatu.ino) · [Karta pracy](projekty/stacja_mikroklimatu/KARTA_PRACY.md) |
 
 
 //////////////////////////////////
@@ -33,19 +34,19 @@ Pełny cykl trwa nominalnie **14 sekund**.
 2. Wybierz projekt, przeczytaj jego README i przygotuj wymienione części.
 3. Przy odłączonym USB zmontuj układ według schematu. W alarmie i nadajniku Morse’a wykonaj też osobny tor L293D i brzęczyka.
 4. Otwórz plik `.ino` w Arduino IDE. W projektach z plikiem `Przycisk.h` pozostaw go obok szkicu, w tym samym folderze.
-5. Wybierz **Arduino Nano**, właściwy port i procesor zgodny z oznaczeniem na swojej płytce. W starszych klonach może być potrzebna opcja **ATmega328P (Old Bootloader)**. Projekt wyświetlacza wymaga biblioteki **LiquidCrystal** — instalację opisano w jego instrukcji. Pozostałe projekty nie wymagają dodatkowych bibliotek.
+5. Wybierz płytkę zgodnie z instrukcją projektu: **Arduino Nano** dla dotychczasowych schematów albo **Arduino Uno** dla stacji mikroklimatu. W Nano dobierz procesor i bootloader do swojej płytki; w starszych klonach może być potrzebne **ATmega328P (Old Bootloader)**. Baner wymaga **LiquidCrystal**. Stacja wymaga **LiquidCrystal, DHT sensor library, Adafruit Unified Sensor, OneWire i DallasTemperature** — instalację i sprawdzone wersje podano w jej instrukcji. Pozostałe projekty nie wymagają dodatkowych bibliotek.
 6. Podłącz USB, wgraj kod i wykonaj próby z instrukcji projektu. W projektach korzystających z Monitora portu szeregowego ustaw **9600 baud**.
 
 ## Płytka, zasilanie i schematy
 
-- Zasilanie projektów: **USB Nano, 5 V**. Wszystkie elementy mają wspólną masę GND. Bateria 9 V nie jest potrzebna do tych ćwiczeń.
+- Zasilanie projektów: **USB płytki Arduino, 5 V**. Wszystkie elementy mają wspólną masę GND. Bateria 9 V ani zasilacz 12 V nie są potrzebne do tych ćwiczeń.
 - Zestaw rozpoznano jako format klasycznego Nano. Przed wyborem procesora odczytaj oznaczenie mikrokontrolera na swoim klonie; sprawdzone kody przygotowano dla **ATmega328P 16 MHz**.
 - Każda osobna LED sygnalizacyjna ma rezystor **1 kΩ**. Podświetlenie LCD wykorzystuje **330 Ω**, zgodnie z instrukcją wyświetlacza. Przyciski łączą wejścia z GND; podciąganie `INPUT_PULLUP` włącza program.
-- Rysunki pokazują elementy i kolorowe przewody. Nano jest widoczne z góry, USB u dołu. Dobierz otwory breadboardu według jego rzeczywistych grup styków.
+- Rysunki pokazują elementy i kolorowe przewody. Nano jest widoczne z góry, USB u dołu; w stacji mikroklimatu pokazano Uno z USB u góry. Dobierz otwory breadboardu według jego rzeczywistych grup styków. W instrukcji stacji wyjaśniono również orientację czujników, rezystory podciągające i zwarte pary styków przycisku.
 - Alarm i nadajnik Morse’a używają aktywnego brzęczyka oraz L293D. Wymagane napięcie konkretnego brzęczyka trzeba potwierdzić; sterownik powoduje spadek napięcia. Pełny opis i oba schematy są w instrukcjach tych projektów.
 
 ## Sprawdzenie kodu
 
-Wszystkie siedem szkiców przeszło kompilację dla **ATmega328P 16 MHz**. W uproszczonej sygnalizacji sprawdzono kompilację i kolejność czterech faz; pozostałe sześć projektów przeszło również testy logiki z atrapami sprzętu. Wyświetlacz sprawdzono z biblioteką **LiquidCrystal 1.0.7**. Nie wykonano prób na fizycznym zestawie. Instrukcje projektów podają oczekiwane zachowanie i próby do wykonania po montażu.
+Wszystkich osiem szkiców przeszło kompilację dla **ATmega328P 16 MHz**. W uproszczonej sygnalizacji sprawdzono kompilację i kolejność czterech faz; pozostałe siedem projektów przeszło również testy logiki z atrapami sprzętu. Wyświetlacz sprawdzono z biblioteką **LiquidCrystal 1.0.7**. Stację mikroklimatu skompilowano dla **Uno i klasycznego Nano** z rzeczywistymi bibliotekami; dziewięć grup jej testów sprawdziło m.in. pomiary co 2 s, konwersję DS18B20, przycisk, histerezę, MIN/MAX i błędy czujników. Nie wykonano prób na fizycznym zestawie. Instrukcje projektów podają oczekiwane zachowanie i próby do wykonania po montażu.
 
 Podstawą parametrów są [dokumentacja klasycznego Nano](https://docs.arduino.cc/hardware/nano/) i [oficjalny pinout](https://docs.arduino.cc/resources/pinouts/A000005-full-pinout.pdf). Źródła dotyczące czujnika, sterownika i pozostałych funkcji podano przy poszczególnych projektach.
